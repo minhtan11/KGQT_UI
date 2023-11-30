@@ -1,35 +1,7 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content [fullscreen]="true" scroll-y="false">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Đăng nhập</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-
-  <div class="bg-partial">
-    <div class="card-body p-5 text-align-center">
-      <ion-text color="contrast">
-        <h3>ĐĂNG NHẬP</h3>
-      </ion-text>
-      <div class="d-inline-block mt-2 w-90">
-        <ion-input id="username" type="text" [clearInput]="true" placeholder="Nhập tên tài khoản"
-          class="input-Fill mb-10 rounded-input-20 border-gray-500 w-100" label="Tài khoản" label-placement="floating" fill="outline"></ion-input>
-        <ion-input id="password" type="password" [clearInput]="true" placeholder="Nhập mật khẩu"
-          class="input-Fill mb-10 rounded-input-20 border-gray-500 w-100" label="Mật khẩu" label-placement="floating" fill="outline"></ion-input>
-      </div>
-
-    </div>
+  <div class="bg-home"></div>
+  <div class="tranform-center" style="padding-left: 10px;padding-right: 10px;">
+    <ion-button (click)="goSignInPage()" color="success" class="mb-20" expand="block" shape="round">Đăng nhập</ion-button>
+    <ion-button color="light" class="mb-20" expand="block" shape="round">Đăng ký</ion-button>
   </div>
-
-  <!-- <div id="container">
-    <strong>Ready to create an appa?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div> -->
 </ion-content>
