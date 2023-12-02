@@ -28,9 +28,19 @@ export class HomePage implements OnInit,AfterViewInit {
   //#endregion Event
 
   //#region Function
+
+  /**
+   * *Function Go to SignIn Page 
+   */
   goSignInPage(){
-    this.router.navigate(['home/signin'])
-    //this.component = ;
+    this.router.navigate(['home/signin']);
+  }
+
+  /**
+   * *Function go to SignUp Page
+   */
+  goSignUpPage(){
+    this.router.navigate(['home/signup']);
   }
   //#endregion Function
 }

@@ -8,9 +8,9 @@
 <ion-content [fullscreen]="true" scroll-y="false">
   <div class="card-body p-5 text-align-center">
     <ion-text>
-      <h3 class="fw-bold" >ĐĂNG NHẬP</h3>
+      <h3 class="fw-bold">ĐĂNG KÝ TÀI KHOẢN</h3>
     </ion-text>
-    <div [formGroup]="formGroup" class="d-inline-block mt-1 w-90">
+    <!-- <div [formGroup]="formGroup" class="d-inline-block mt-1 w-90">
       <ion-item lines="none" class="mb-20">
         <ion-input [autofocus]="true" name="username" formControlName="username" type="text" [clearInput]="true"
           labelPlacement="floating" placeholder="Nhập tên tài khoản" errorText="Tên tài khoản không được bỏ trống">
@@ -31,12 +31,7 @@
           Quên mật khẩu
         </ion-text>
       </div>
-    </div>
-    <!-- <ng-container *ngIf="isSignUp">
-      <ion-text>
-        <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
-      </ion-text>
-    </ng-container> -->
-    <ion-alert [isOpen]="isError" [message]="messageError" [buttons]="['OK']" (didDismiss)="didDismiss()"></ion-alert>
+    </div> -->
+    <!-- <ion-alert [isOpen]="isError" [message]="messageError" [buttons]="['OK']" (didDismiss)="didDismiss()"></ion-alert> -->
   </div>
 </ion-content>

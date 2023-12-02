@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { SigninPageComponent } from './signin-page/signin-page/signin-page.component';
+import { SignupPageComponent } from './signup-page/signup-page/signup-page.component';
 
 
 @NgModule({
@@ -17,6 +18,6 @@ import { SigninPageComponent } from './signin-page/signin-page/signin-page.compo
     HomePageRoutingModule,
     ReactiveFormsModule,
   ],
-  declarations: [HomePage,SigninPageComponent]
+  declarations: [HomePage,SigninPageComponent,SignupPageComponent]
 })
 export class HomePageModule {}
