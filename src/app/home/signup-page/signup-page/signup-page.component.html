@@ -1,37 +1,124 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button icon="chevron-back-outline" color="primary" text=""></ion-back-button>
+      <ion-back-button icon="chevron-back-outline" color="success" text=""></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true" scroll-y="false">
-  <div class="card-body p-5 text-align-center">
-    <ion-text>
+<ion-content full>
+    <ion-text class="ion-text-center">
       <h3 class="fw-bold">ĐĂNG KÝ TÀI KHOẢN</h3>
     </ion-text>
-    <!-- <div [formGroup]="formGroup" class="d-inline-block mt-1 w-90">
-      <ion-item lines="none" class="mb-20">
-        <ion-input [autofocus]="true" name="username" formControlName="username" type="text" [clearInput]="true"
-          labelPlacement="floating" placeholder="Nhập tên tài khoản" errorText="Tên tài khoản không được bỏ trống">
-          <div slot="label">Tài khoản<ion-text color="danger"> (*) </ion-text></div>
-        </ion-input>
-      </ion-item>
-      <ion-item lines="none" class="mb-20">
-        <ion-input [autofocus]="true" name="password" formControlName="password" [type]="!showPass ? 'password' : 'text'" [clearInput]="true"
-          labelPlacement="floating" placeholder="Nhập tên tài khoản" errorText="Mật khẩu không được bỏ trống">
-          <div slot="label">Mật khẩu<ion-text color="danger"> (*) </ion-text></div>
-        </ion-input>
-        <ion-icon (click)="showPassword()" slot="end" [name]="!showPass ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
-      </ion-item>
-      <ion-button (click)="onSignIn()" class="mb-20" color="success" expand="block" shape="round">Đăng nhập</ion-button>
-      <hr class="mb-20" style="background-color: #eae8e8;">
-      <div class="mb-10">
-        <ion-text color="primary">
-          Quên mật khẩu
-        </ion-text>
-      </div>
-    </div> -->
-    <!-- <ion-alert [isOpen]="isError" [message]="messageError" [buttons]="['OK']" (didDismiss)="didDismiss()"></ion-alert> -->
-  </div>
+    <form [formGroup]="formGroup">
+      <ion-grid [formGroup]="formGroup">
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="mb-10">
+              <ion-input name="firstName" formControlName="firstName" type="text" [clearInput]="true"
+                labelPlacement="floating" placeholder="Nhập Họ" errorText="Họ không được bỏ trống">
+                <div slot="label">Họ<ion-text color="danger"> (*) </ion-text></div>
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="mb-10">
+              <ion-input name="lastName" formControlName="lastName" type="text" [clearInput]="true"
+                labelPlacement="floating" placeholder="Nhập tên" errorText="Tên không được bỏ trống">
+                <div slot="label">Tên<ion-text color="danger"> (*) </ion-text></div>
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item class="mb-10">
+              <ion-select name="gender" formControlName="gender" interface="popover" label-placement="floating">
+                <div slot="label">Giới tính<ion-text color="danger"> (*) </ion-text></div>
+                <ion-select-option [value]="0">Nam</ion-select-option>
+                <ion-select-option [value]="1">Nữ</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="mb-10">
+              <ion-input name="phone" formControlName="phone" type="tel" [clearInput]="true"
+                labelPlacement="floating" placeholder="Nhập số điện thoại" errorText="Số điện thoại không được bỏ trống">
+                <div slot="label">Số điện thoại<ion-text color="danger"> (*) </ion-text></div>
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item class="mb-10">
+              <ion-text>
+                Ngày sinh
+              </ion-text>
+              <ion-datetime-button (click)="onOpenDate()" slot="end" datetime="datetime"></ion-datetime-button>
+              <ion-modal #modal [keepContentsMounted]="true" [canDismiss]="canDismiss">
+                <ng-template>
+                  <ion-datetime formControlName="birthDay" locale="vi-VN" presentation="date" id="datetime"></ion-datetime>
+                  <ion-toolbar>
+                    <ion-title class="ion-text-center"><ion-button color="success" shape="round" (click)="onDismiss()">Ok</ion-button></ion-title>
+                  </ion-toolbar>
+                </ng-template>
+              </ion-modal>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="mb-10">
+              <ion-input name="email" formControlName="email" type="email" [clearInput]="true"
+                labelPlacement="floating" placeholder="Nhập Email" errorText="Email không được bỏ trống">
+                <div slot="label">Email<ion-text color="danger"> (*) </ion-text></div>
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="mb-10">
+              <ion-input name="address" formControlName="address" type="text" [clearInput]="true"
+                labelPlacement="floating" placeholder="Nhập địa chỉ" errorText="Địa chỉ không được bỏ trống">
+                <div slot="label">Địa chỉ<ion-text color="danger"> (*) </ion-text></div>
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="mb-10">
+              <ion-input name="userName" formControlName="userName" type="text" [clearInput]="true"
+                labelPlacement="floating" placeholder="Nhập tài khoản" errorText="Tài khoản không được bỏ trống">
+                <div slot="label">Tài khoản<ion-text color="danger"> (*) </ion-text></div>
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="mb-20">
+              <ion-input name="passWord" formControlName="passWord" [type]="!showPass ? 'password' : 'text'" [clearInput]="true"
+                labelPlacement="floating" placeholder="Nhập mật khẩu" errorText="Mật khẩu không được bỏ trống">
+                <div slot="label">Mật khẩu<ion-text color="danger"> (*) </ion-text></div>
+              </ion-input>
+              <ion-icon (click)="showPassword()" slot="end" [name]="!showPass ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="onSignUp()" class="mb-20" color="light" expand="block" shape="round" [disabled]="isSignUp">
+              <ion-text *ngIf="!isSignUp">Đăng ký </ion-text><ion-spinner *ngIf="isSignUp" name="crescent" color="success"></ion-spinner></ion-button>
+          </ion-col>
+        </ion-row> 
+      </ion-grid>
+    </form>
+    <ion-alert header="Lỗi!" [isOpen]="isError" [message]="messageError" [buttons]="alertButtons" (didDismiss)="onDismissError()"></ion-alert>
+    
 </ion-content>

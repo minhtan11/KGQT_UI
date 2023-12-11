@@ -5,8 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { SigninPageComponent } from './signin-page/signin-page/signin-page.component';
 import { SignupPageComponent } from './signup-page/signup-page/signup-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { SignupPageComponent } from './signup-page/signup-page/signup-page.compo
     IonicModule,
     HomePageRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  declarations: [HomePage,SigninPageComponent,SignupPageComponent]
+  declarations: [HomePage,SignupPageComponent]
 })
 export class HomePageModule {}
