@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -30,6 +31,7 @@ export class SignupPageComponent  implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http : HttpClient,
+    private router: Router,
     private dt : ChangeDetectorRef
   ) { }
   //#endregion Constructor
@@ -39,13 +41,13 @@ export class SignupPageComponent  implements OnInit {
     this.formGroup = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      gender: [0, Validators.required],
+      gender: ['', Validators.required],
       phone: ['', Validators.required],
       email: ['', Validators.email],
       address: ['', Validators.required],
       userName: ['', Validators.required],
       passWord: ['', Validators.required],
-      birthDay: [new Date().toJSON()]
+      birthDay: [new Date()]
     });
   }
 
@@ -76,6 +78,10 @@ export class SignupPageComponent  implements OnInit {
     this.isError = false;
     this.messageError = '';
     this.isSignUp = false;
+  }
+
+  goSignInPage(){
+    this.router.navigate(['home']);
   }
 
   onSignUp(){
