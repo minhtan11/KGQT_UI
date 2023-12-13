@@ -47,11 +47,14 @@
 }
 
 .tranform-center{
-    transform: translate(-50%, -50%);
-    left: 50%;
     position: absolute;
     top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
     text-align: center;
+    padding: 20px;
 }
 
 .p-5{
@@ -133,6 +136,7 @@ button.alert-button.alert-button-ok {
     outline: none;
     border-radius: 50px;
     border: none;
+    text-overflow: ellipsis;
 }
 
 .img-home{

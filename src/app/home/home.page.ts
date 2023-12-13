@@ -55,6 +55,7 @@ export class HomePage implements OnInit,AfterViewInit {
         icon: "error",
         title: "Lỗi!",
         text: "Tài khoản và mật khẩu không được phép để trống! Vui lòng nhập lại",
+        confirmButtonColor:'#d33',
         heightAuto: false
       });
       return;
@@ -63,17 +64,12 @@ export class HomePage implements OnInit,AfterViewInit {
       icon: "success",
       title: "Đăng nhập thành công",
       text: "",
+      confirmButtonColor:'#2dd36f',
       heightAuto: false
     }).then((res:any)=>{
       console.log(res);
     })
   }
-
-  didDismiss(){
-    this.isError = false;
-    this.messageError = '';
-  }
-
   /**
    * *Function go to SignUp Page
    */

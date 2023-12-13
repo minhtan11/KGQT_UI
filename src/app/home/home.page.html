@@ -1,5 +1,5 @@
-<ion-content [fullscreen]="true" scroll-y="false">
-  <div style="width: 70%;max-width: 850px;" class="tranform-center">
+<ion-content>
+  <div style="max-width: 850px;height: unset" class="tranform-center">
     <div class="mb-10">
       <img class="img-home" src="../../assets/image/delivery.png" alt="">
     </div>
@@ -15,7 +15,7 @@
       <div class="col-12 mb-10">
         <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-success)" lines="none">
           <input name="passWord" formControlName="passWord" class="input-mb " [type]="showPass ? 'text' : 'password'" placeholder="Mật khẩu">
-          <i (click)="showPassword()" slot="end" [class]="showPass ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+          <i (click)="showPassword()" slot="end" [class]="!showPass ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
         </ion-item>
       </div>
       <div class="col-12 mb-10">

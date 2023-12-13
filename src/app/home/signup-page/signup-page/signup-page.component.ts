@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -47,7 +48,7 @@ export class SignupPageComponent  implements OnInit {
       address: ['', Validators.required],
       userName: ['', Validators.required],
       passWord: ['', Validators.required],
-      birthDay: [new Date()]
+      birthDay: [new Date().toISOString().substring(0, 10),[]]
     });
   }
 
@@ -85,15 +86,16 @@ export class SignupPageComponent  implements OnInit {
   }
 
   onSignUp(){
+    console.log(this.formGroup.value)
     // this.isSignUp = true;
     // if (this.formGroup.invalid) {
     //   this.isError = true;
     //   this.messageError = 'Thông tin đăng ký không được để trống! Vui lòng nhập lại'
     //   return;
     // }
-    this.http.post(environment.apiUrl+'Authencation/register',this.formGroup.value).pipe(takeUntil(this.destroy$)).subscribe((res:any)=>{
-      console.log(res);
-    })
+    // this.http.post(environment.apiUrl+'Authencation/register',this.formGroup.value).pipe(takeUntil(this.destroy$)).subscribe((res:any)=>{
+    //   console.log(res);
+    // })
   }
   //#endregion Function  
 
