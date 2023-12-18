@@ -9,7 +9,6 @@ import Swal from 'sweetalert2'
 })
 export class NotificationServiceComponent  implements OnInit {
   //#region Constructor
-  confirmed = new BehaviorSubject(0);
   constructor() { }
   //#endregion Constructor
 
@@ -18,19 +17,19 @@ export class NotificationServiceComponent  implements OnInit {
   //#endregion Init
 
   //#region Function
-  // showNotificationError(title:string = 'Lỗi!',text:string = '',confirmButtonColor:string = '#d33',confirmButtonText:string = 'Ok') : Observable<string>{
-  //   Swal.fire({
-  //     icon: "error",
-  //     title: title,
-  //     text: text,
-  //     confirmButtonColor : confirmButtonColor,
-  //     confirmButtonText : confirmButtonText,
-  //     heightAuto: false
-  //   }).then((res:any)=>{
-  //     return res;
-  //   });
-  //   return ''
-  // }
+  showNotiError(title:string,text:string) {
+    Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-danger",
+      },
+      buttonsStyling: false
+    }).fire({
+      icon: "error",
+      title: title,
+      text: text,
+      heightAuto: false
+    });
+  }
   
   //#endregion Function
 }

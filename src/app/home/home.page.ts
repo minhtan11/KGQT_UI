@@ -1,7 +1,10 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2'
+import { NotificationServiceComponent } from '../notification-service/notification-service/notification-service.component';
 
 @Component({
   selector: 'app-home',
@@ -19,14 +22,16 @@ export class HomePage implements OnInit,AfterViewInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private dt : ChangeDetectorRef
+    private dt : ChangeDetectorRef,
+    private notification : NotificationServiceComponent,
+    private http : HttpClient,
   ) {}
   //#endregion Constructor
 
   //#region Init
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      username: ['', Validators.required],
+      userName: ['', Validators.required],
       passWord: ['', Validators.required]
     });
   }
@@ -51,23 +56,16 @@ export class HomePage implements OnInit,AfterViewInit {
 
   onSignIn(){
     if (this.formGroup.invalid) {
-      Swal.fire({
-        icon: "error",
-        title: "Lỗi!",
-        text: "Tài khoản và mật khẩu không được phép để trống! Vui lòng nhập lại",
-        confirmButtonColor:'#d33',
-        heightAuto: false
-      });
+      this.notification.showNotiError('Lỗi!','Tài khoản và mật khẩu không được phép để trống! Vui lòng nhập lại');
       return;
     }
-    Swal.fire({
-      icon: "success",
-      title: "Đăng nhập thành công",
-      text: "",
-      confirmButtonColor:'#2dd36f',
-      heightAuto: false
-    }).then((res:any)=>{
-      console.log(res);
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("userName",this.formGroup.value?.userName);
+    queryParams = queryParams.append("passWord",this.formGroup.value?.passWord);
+    this.http.get(environment.apiUrl+'Authencation/login',{params:queryParams}).subscribe((res:any)=>{
+      if (res && !res.isError) {
+        
+      }
     })
   }
   /**

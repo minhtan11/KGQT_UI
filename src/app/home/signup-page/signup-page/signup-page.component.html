@@ -1,17 +1,96 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button icon="chevron-back-outline" color="success" text=""></ion-back-button>
+      <ion-back-button icon="chevron-back-outline" style="color:var(--ion-color-warning-tint)" text=""></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div style="max-width: 850px;" class="tranform-center">
+  <div style="margin-top: 1rem;" class="container w-100 h-100 d-flex align-items-center text-center">
+    <div class="w-100" style="height: 95%;">
+      <div class="mb-10">
+        <img class="img-home" src="../../assets/image/logo.png" alt="">
+      </div>
+      <div class="mb-10" >
+        <h3 style="color: #f3b600;" class="font-weight-bold">ĐĂNG KÝ</h3>
+      </div>
+      <div style="height: 70px;" class="mb-10">
+        <img style="width: 70px;height: 70px;border-radius: 50px;margin-right: auto;margin-left: auto;display: block;border: 1px solid" (click)="uploadImage()" alt="" [src]="image ? 'data:image/jpeg;base64,'+image?.base64String : '../../../../assets/image/user.png'"  />
+      </div>
+      <div class="row" [formGroup]="formGroup">
+        <div class="col-12 mb-10">
+          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-warning-tint)" lines="none">
+            <input name="firstName" formControlName="firstName" class="input-mb " type="text" placeholder="Nhập Họ">
+          </ion-item>
+        </div>
+        <div class="col-12 mb-10">
+          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-warning-tint)" lines="none">
+            <input name="lastName" formControlName="lastName" class="input-mb " type="text" placeholder="Nhập tên">
+          </ion-item>
+        </div>
+        <div class="col-12 mb-10">
+          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-warning-tint)" lines="none">
+            <ion-select name="gender" formControlName="gender">
+              <span style="color: rgb(117, 117, 117) !important;letter-spacing: 1px;" slot="label">Giới tính</span>
+              <ion-select-option [value]="0">Nam</ion-select-option>
+              <ion-select-option [value]="1">Nữ</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="col-12 mb-10">
+          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-warning-tint)" lines="none">
+            <input name="phone" formControlName="phone" class="input-mb " type="text" placeholder="Nhập số điện thoại">
+          </ion-item>
+        </div>
+        <div class="col-12 mb-10">
+          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-warning-tint)" lines="none">
+            <input name="birthDay" formControlName="birthDay" class="input-mb " type="date" [value]="formGroup.value.birthDay" placeholder="Ngày sinh">
+          </ion-item>
+        </div>
+        <div class="col-12 mb-10">
+          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-warning-tint)" lines="none">
+            <input name="email" formControlName="email" class="input-mb " type="email" placeholder="Nhập Email">
+          </ion-item>
+        </div>
+        <div class="col-12 mb-10">
+          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-warning-tint)" lines="none">
+            <input name="address" formControlName="address" class="input-mb " type="text" placeholder="Nhập địa chỉ">
+          </ion-item>
+        </div>
+        <div class="col-12 mb-10">
+          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-warning-tint)" lines="none">
+            <input name="userName" formControlName="userName" class="input-mb " type="text" placeholder="Nhập tài khoản">
+          </ion-item>
+        </div>
+        <div class="col-12 mb-10">
+          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-warning-tint)" lines="none">
+            <input name="passWord" formControlName="passWord" class="input-mb " [type]="showPass ? 'text' : 'password'" placeholder="Nhập mật khẩu">
+            <i (click)="showPassword()" slot="end" [class]="!showPass ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+          </ion-item>
+        </div>
+        <div class="col-12 mb-10">
+          <button (click)="onSignUp()" type="button" class="btn btn-primary btn-md btn-block" style="border-radius: 50px;">Đăng ký</button>
+        </div>
+        <div class="col-12 mb-10">
+          <hr class="mb-10" style="background-color: #eae8e8;width: 50%;">
+        </div>
+        <div class="col-12 mb-10">
+          <ion-text style="font-size: 13px;">
+            Bạn đã có tài khoản?
+          </ion-text>
+          <span (click)="goSignInPage()" style="font-size: 13px;color:var(--ion-color-warning-tint)" class="font-weight-bold">
+            <u>Đăng nhập</u>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- <div style="max-width: 850px;" class="tranform-center">
       <div class="mb-10" >
         <span style="font-size: 25px;font-weight: bold;color: black;">ĐĂNG KÝ</span>
       </div>
-      <div class="mb-10" >
-        <img style="width: 20%;height: 20%;border-radius: 50px;" alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      <div style="height: 70px;" class="mb-10">
+        <img style="width: 70px;height: 70px;border-radius: 50px;margin-right: auto;margin-left: auto;display: block;border: 1px solid" (click)="uploadImage()" alt="" [src]="image ? 'data:image/jpeg;base64,'+image?.base64String : '../../../../assets/image/user.png'"  />
       </div>
       <div class="row" [formGroup]="formGroup">
         <div class="col-12 mb-10">
@@ -79,120 +158,5 @@
           </ion-text>
         </div>
       </div>
-    </div>
-    <!-- <ion-text class="ion-text-center">
-      <h3 class="fw-bold">ĐĂNG KÝ TÀI KHOẢN</h3>
-    </ion-text>
-    <form [formGroup]="formGroup">
-      <ion-grid [formGroup]="formGroup">
-        <ion-row>
-          <ion-col>
-            <ion-item lines="none" class="mb-10">
-              <ion-input name="firstName" formControlName="firstName" type="text" [clearInput]="true"
-                labelPlacement="floating" placeholder="Nhập Họ" errorText="Họ không được bỏ trống">
-                <div slot="label">Họ<ion-text color="danger"> (*) </ion-text></div>
-              </ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="none" class="mb-10">
-              <ion-input name="lastName" formControlName="lastName" type="text" [clearInput]="true"
-                labelPlacement="floating" placeholder="Nhập tên" errorText="Tên không được bỏ trống">
-                <div slot="label">Tên<ion-text color="danger"> (*) </ion-text></div>
-              </ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item class="mb-10">
-              <ion-select name="gender" formControlName="gender" interface="popover" label-placement="floating">
-                <div slot="label">Giới tính<ion-text color="danger"> (*) </ion-text></div>
-                <ion-select-option [value]="0">Nam</ion-select-option>
-                <ion-select-option [value]="1">Nữ</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="none" class="mb-10">
-              <ion-input name="phone" formControlName="phone" type="tel" [clearInput]="true"
-                labelPlacement="floating" placeholder="Nhập số điện thoại" errorText="Số điện thoại không được bỏ trống">
-                <div slot="label">Số điện thoại<ion-text color="danger"> (*) </ion-text></div>
-              </ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item class="mb-10">
-              <ion-text>
-                Ngày sinh
-              </ion-text>
-              <ion-datetime-button (click)="onOpenDate()" slot="end" datetime="datetime"></ion-datetime-button>
-              <ion-modal #modal [keepContentsMounted]="true" [canDismiss]="canDismiss">
-                <ng-template>
-                  <ion-datetime formControlName="birthDay" locale="vi-VN" presentation="date" id="datetime"></ion-datetime>
-                  <ion-toolbar>
-                    <ion-title class="ion-text-center"><ion-button color="success" shape="round" (click)="onDismiss()">Ok</ion-button></ion-title>
-                  </ion-toolbar>
-                </ng-template>
-              </ion-modal>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="none" class="mb-10">
-              <ion-input name="email" formControlName="email" type="email" [clearInput]="true"
-                labelPlacement="floating" placeholder="Nhập Email" errorText="Email không được bỏ trống">
-                <div slot="label">Email<ion-text color="danger"> (*) </ion-text></div>
-              </ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="none" class="mb-10">
-              <ion-input name="address" formControlName="address" type="text" [clearInput]="true"
-                labelPlacement="floating" placeholder="Nhập địa chỉ" errorText="Địa chỉ không được bỏ trống">
-                <div slot="label">Địa chỉ<ion-text color="danger"> (*) </ion-text></div>
-              </ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="none" class="mb-10">
-              <ion-input name="userName" formControlName="userName" type="text" [clearInput]="true"
-                labelPlacement="floating" placeholder="Nhập tài khoản" errorText="Tài khoản không được bỏ trống">
-                <div slot="label">Tài khoản<ion-text color="danger"> (*) </ion-text></div>
-              </ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-item lines="none" class="mb-20">
-              <ion-input name="passWord" formControlName="passWord" [type]="!showPass ? 'password' : 'text'" [clearInput]="true"
-                labelPlacement="floating" placeholder="Nhập mật khẩu" errorText="Mật khẩu không được bỏ trống">
-                <div slot="label">Mật khẩu<ion-text color="danger"> (*) </ion-text></div>
-              </ion-input>
-              <ion-icon (click)="showPassword()" slot="end" [name]="!showPass ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-button (click)="onSignUp()" class="mb-20" color="light" expand="block" shape="round" [disabled]="isSignUp">
-              <ion-text *ngIf="!isSignUp">Đăng ký </ion-text><ion-spinner *ngIf="isSignUp" name="crescent" color="success"></ion-spinner></ion-button>
-          </ion-col>
-        </ion-row> 
-      </ion-grid>
-    </form>
-    <ion-alert header="Lỗi!" [isOpen]="isError" [message]="messageError" [buttons]="alertButtons" (didDismiss)="onDismissError()"></ion-alert>
-     -->
+    </div> -->
 </ion-content>

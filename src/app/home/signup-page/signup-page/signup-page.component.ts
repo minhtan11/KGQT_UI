@@ -1,11 +1,15 @@
 import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Camera, CameraResultType } from '@capacitor/camera';
+import { Directory, Filesystem } from '@capacitor/filesystem';
+import { AppService } from 'src/app/service/appservice.service';
+import Swal from 'sweetalert2'
+import { NotificationServiceComponent } from 'src/app/notification-service/notification-service/notification-service.component';
 
 
 @Component({
@@ -14,7 +18,7 @@ import { Camera, CameraResultType } from '@capacitor/camera';
   styleUrls: ['./signup-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignupPageComponent  implements OnInit {
+export class SignupPageComponent  implements OnInit,AfterViewInit {
 
   //#region Constructor
   @ViewChild('modal') modal: any;
@@ -24,19 +28,56 @@ export class SignupPageComponent  implements OnInit {
   isError:any = false;
   isSignUp:any = false;
   messageError:any = '';
-  alertButtons = [
-    {
-      text: 'Ok',
-      cssClass: 'alert-button-ok',
-    }
-  ];
+  image:any;
+  formSetup:any = [];
   private destroy$ = new Subject<void>();
   constructor(
     private formBuilder: FormBuilder,
     private http : HttpClient,
     private router: Router,
+    private appService:AppService,
+    private notification : NotificationServiceComponent,
     private dt : ChangeDetectorRef
-  ) { }
+  ) { 
+    this.formSetup = [
+      {
+        field:'firstName',
+        headerText:'Họ'
+      },
+      {
+        field:'lastName',
+        headerText:'Tên'
+      },
+      {
+        field:'gender',
+        headerText:'Giới tính'
+      },
+      {
+        field:'phone',
+        headerText:'Số điện thoại'
+      },
+      {
+        field:'birthDay',
+        headerText:'Ngày sinh'
+      },
+      {
+        field:'email',
+        headerText:'Email'
+      },
+      {
+        field:'address',
+        headerText:'Địa chỉ'
+      },
+      {
+        field:'userName',
+        headerText:'Tài khoản'
+      },
+      {
+        field:'passWord',
+        headerText:'Mật khẩu'
+      },
+    ]
+  }
   //#endregion Constructor
 
   //#region Init
@@ -50,8 +91,13 @@ export class SignupPageComponent  implements OnInit {
       address: ['', Validators.required],
       userName: ['', Validators.required],
       passWord: ['', Validators.required],
-      birthDay: [new Date().toISOString().substring(0, 10),[]]
+      birthDay: [new Date().toISOString().substring(0, 10),[]],
+      base64String : [''],
+      fileName:['']
     });
+  }
+
+  async ngAfterViewInit() {
   }
 
   ngOnDestroy() {
@@ -87,34 +133,28 @@ export class SignupPageComponent  implements OnInit {
     this.router.navigate(['home']);
   }
 
-  onSignUp(){
-    console.log(this.formGroup.value)
-    // this.isSignUp = true;
-    // if (this.formGroup.invalid) {
-    //   this.isError = true;
-    //   this.messageError = 'Thông tin đăng ký không được để trống! Vui lòng nhập lại'
-    //   return;
-    // }
-    // this.http.post(environment.apiUrl+'Authencation/register',this.formGroup.value).pipe(takeUntil(this.destroy$)).subscribe((res:any)=>{
-    //   console.log(res);
-    // })
+  async onSignUp(){
+    let validate = this.appService.validation(this.formGroup,this.formSetup);
+    if(validate) return;
+    let fileName = Date.now() + this.formGroup.value.userName+'.'+this.image?.format;
+    this.formGroup.patchValue({base64String:this.image?.base64String});
+    this.formGroup.patchValue({fileName:fileName});
+    this.http.post(environment.apiUrl+'Authencation/register',this.formGroup.value).pipe(takeUntil(this.destroy$)).subscribe((res:any)=>{
+      if (res && !res?.isError) {
+        
+      }else{
+        this.notification.showNotiError('Lỗi!',res?.message);
+      }
+    })
   }
 
-  async pick(){
-    const image = await Camera.getPhoto({
-      quality: 90,
+  async uploadImage(){
+    this.image = await Camera.getPhoto({
+      quality: 100,
       allowEditing: true,
-      resultType: CameraResultType.Uri
+      resultType: CameraResultType.Base64,
     });
-  
-    // image.webPath will contain a path that can be set as an image src.
-    // You can access the original file using image.path, which can be
-    // passed to the Filesystem API to read the raw data of the image,
-    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
-    let imageUrl = image.webPath;
-  
-    // Can be set to the src of an image now
-    console.log(imageUrl)
+    this.dt.detectChanges();
   }
   //#endregion Function  
 

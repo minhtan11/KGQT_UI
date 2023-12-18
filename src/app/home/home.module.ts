@@ -7,6 +7,8 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { SignupPageComponent } from './signup-page/signup-page/signup-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NotificationServiceComponent } from '../notification-service/notification-service/notification-service.component';
+
 
 
 @NgModule({
@@ -17,8 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule,
     HomePageRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  declarations: [HomePage,SignupPageComponent]
+  declarations: [HomePage,SignupPageComponent,NotificationServiceComponent],
+  providers : [NotificationServiceComponent]
 })
 export class HomePageModule {}
