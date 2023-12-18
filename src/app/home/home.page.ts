@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2'
 import { NotificationServiceComponent } from '../notification-service/notification-service/notification-service.component';
+import { ApiComponent } from '../api/api/api.component';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomePage implements OnInit,AfterViewInit {
     private formBuilder: FormBuilder,
     private dt : ChangeDetectorRef,
     private notification : NotificationServiceComponent,
+    private api : ApiComponent,
     private http : HttpClient,
   ) {}
   //#endregion Constructor
@@ -59,6 +61,7 @@ export class HomePage implements OnInit,AfterViewInit {
       this.notification.showNotiError('Lỗi!','Tài khoản và mật khẩu không được phép để trống! Vui lòng nhập lại');
       return;
     }
+    this.api.execByParameter([{userName:this.formGroup.value?.userName,passWord:this.formGroup.value?.passWord}])
     let queryParams = new HttpParams();
     queryParams = queryParams.append("userName",this.formGroup.value?.userName);
     queryParams = queryParams.append("passWord",this.formGroup.value?.passWord);

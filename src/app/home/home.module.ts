@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { SignupPageComponent } from './signup-page/signup-page/signup-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NotificationServiceComponent } from '../notification-service/notification-service/notification-service.component';
+import { ApiComponent } from '../api/api/api.component';
 
 
 
@@ -22,6 +23,6 @@ import { NotificationServiceComponent } from '../notification-service/notificati
     HttpClientModule,
   ],
   declarations: [HomePage,SignupPageComponent,NotificationServiceComponent],
-  providers : [NotificationServiceComponent]
+  providers : [NotificationServiceComponent,ApiComponent]
 })
 export class HomePageModule {}
