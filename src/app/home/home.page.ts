@@ -1,11 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2'
 import { NotificationServiceComponent } from '../notification-service/notification-service/notification-service.component';
 import { ApiComponent } from '../api/api/api.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +14,14 @@ import { ApiComponent } from '../api/api/api.component';
   styleUrls: ['home.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePage implements OnInit,AfterViewInit {
+export class HomePage implements OnInit,AfterViewInit,OnDestroy {
   //#region Constructor
   showPass:any = false;
   isSignUp:any = false;
   isError:any = false;
   messageError:any;
   formGroup!: FormGroup;
+  private destroy$ = new Subject<void>();
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -41,6 +43,15 @@ export class HomePage implements OnInit,AfterViewInit {
   ngAfterViewInit(): void {
     
   }
+
+  ngOnDestroy(): void {
+    this.onDestroy();
+  }
+
+  onDestroy(){
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   //#endregion Init
 
   //#region Event
@@ -61,14 +72,18 @@ export class HomePage implements OnInit,AfterViewInit {
       this.notification.showNotiError('Lỗi!','Tài khoản và mật khẩu không được phép để trống! Vui lòng nhập lại');
       return;
     }
-    this.api.execByParameter([{userName:this.formGroup.value?.userName,passWord:this.formGroup.value?.passWord}])
     let queryParams = new HttpParams();
     queryParams = queryParams.append("userName",this.formGroup.value?.userName);
     queryParams = queryParams.append("passWord",this.formGroup.value?.passWord);
-    this.http.get(environment.apiUrl+'Authencation/login',{params:queryParams}).subscribe((res:any)=>{
-      if (res && !res.isError) {
+    // this.api.execByParameter('Authencation','login',queryParams,true).subscribe((res:any)=>{
+    //   if (res && !res?.isError) {
         
-      }
+    //   }else{
+    //     this.notification.showNotiError('Lỗi!',res?.message);
+    //   }
+    // })
+    this.http.get(environment.apiUrl+'Authencation/login',{params:queryParams}).subscribe((res)=>{
+      this.router.navigate(['home/signup']);
     })
   }
   /**

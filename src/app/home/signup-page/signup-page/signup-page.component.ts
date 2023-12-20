@@ -10,6 +10,7 @@ import { Directory, Filesystem } from '@capacitor/filesystem';
 import { AppService } from 'src/app/service/appservice.service';
 import Swal from 'sweetalert2'
 import { NotificationServiceComponent } from 'src/app/notification-service/notification-service/notification-service.component';
+import { ApiComponent } from 'src/app/api/api/api.component';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class SignupPageComponent  implements OnInit,AfterViewInit {
     private router: Router,
     private appService:AppService,
     private notification : NotificationServiceComponent,
-    private dt : ChangeDetectorRef
+    private dt : ChangeDetectorRef,
+    private api : ApiComponent
   ) { 
     this.formSetup = [
       {
@@ -139,7 +141,7 @@ export class SignupPageComponent  implements OnInit,AfterViewInit {
     let fileName = Date.now() + this.formGroup.value.userName+'.'+this.image?.format;
     this.formGroup.patchValue({base64String:this.image?.base64String});
     this.formGroup.patchValue({fileName:fileName});
-    this.http.post(environment.apiUrl+'Authencation/register',this.formGroup.value).pipe(takeUntil(this.destroy$)).subscribe((res:any)=>{
+    this.api.execByBody('Authencation','register',this.formGroup.value,true).pipe(takeUntil(this.destroy$)).subscribe((res:any)=>{
       if (res && !res?.isError) {
         
       }else{

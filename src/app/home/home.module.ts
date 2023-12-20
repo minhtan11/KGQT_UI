@@ -22,7 +22,7 @@ import { ApiComponent } from '../api/api/api.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  declarations: [HomePage,SignupPageComponent,NotificationServiceComponent],
+  declarations: [HomePage,SignupPageComponent,NotificationServiceComponent,ApiComponent],
   providers : [NotificationServiceComponent,ApiComponent]
 })
 export class HomePageModule {}

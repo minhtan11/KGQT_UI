@@ -5,7 +5,9 @@ const config: CapacitorConfig = {
   appName: 'KGQT',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
+    hostname:'localhost',
+    androidScheme: 'https',
+    cleartext: true,
   }
 };
 
