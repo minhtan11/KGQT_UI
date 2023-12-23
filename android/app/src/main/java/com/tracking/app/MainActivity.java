@@ -1,4 +1,4 @@
-package ionic.app.base;
+package com.tracking.app;
 
 import com.getcapacitor.BridgeActivity;
 

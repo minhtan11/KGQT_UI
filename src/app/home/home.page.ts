@@ -75,16 +75,16 @@ export class HomePage implements OnInit,AfterViewInit,OnDestroy {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("userName",this.formGroup.value?.userName);
     queryParams = queryParams.append("passWord",this.formGroup.value?.passWord);
-    // this.api.execByParameter('Authencation','login',queryParams,true).subscribe((res:any)=>{
-    //   if (res && !res?.isError) {
+    this.api.execByParameter('Authencation','login',queryParams,true).subscribe((res:any)=>{
+      if (res && !res?.isError) {
         
-    //   }else{
-    //     this.notification.showNotiError('Lỗi!',res?.message);
-    //   }
-    // })
-    this.http.get(environment.apiUrl+'Authencation/login',{params:queryParams}).subscribe((res)=>{
-      this.router.navigate(['home/signup']);
+      }else{
+        this.notification.showNotiError('Lỗi!',res?.message);
+      }
     })
+    // this.http.get(environment.apiUrl+'Authencation/login',{params:queryParams}).subscribe((res)=>{
+    //   this.notification.showNotiError('Lỗi!','Tài khoản và mật khẩu không được phép để trống! Vui lòng nhập lại');
+    // })
   }
   /**
    * *Function go to SignUp Page

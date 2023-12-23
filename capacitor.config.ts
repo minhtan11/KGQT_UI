@@ -1,11 +1,18 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'KGQT',
-  appName: 'KGQT',
+  appId: 'com.tracking.app',
+  appName: 'tracking',
   webDir: 'www',
+  plugins: {
+    PushNotifications: {
+      presentationOptions: ["badge", "sound", "alert"],
+    },
+    CapacitorHttp:{
+      enabled:true
+    },
+  },
   server: {
-    hostname:'localhost',
     androidScheme: 'https',
     cleartext: true,
   }
