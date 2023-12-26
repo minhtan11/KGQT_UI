@@ -148,4 +148,45 @@ button.alert-button.alert-button-ok {
 .btn:focus {
     outline: none !important;
     box-shadow: none !important;
-  }
+}
+
+input:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #ced4da !important;
+}
+
+select:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #ced4da !important;
+}
+
+.input-group-hide-border{
+    background-color: white;
+}
+
+.input-group-bg{
+    caret-color: #ffb400;
+}
+
+#ipPassWord:focus{
+    border-right-color: white !important;
+}
+
+// .input-group-prepend{
+//     border: 1px solid rgba(0,0,0,0);
+// }
+// .input-group-append{
+//     border: 1px solid rgba(0,0,0,0);
+//     margin-left: -2px !important;
+// }
+.form-control::-webkit-input-placeholder {
+    font-size: 11px;
+}
+
+// Bootstrap and its default variables
+
+
+
+

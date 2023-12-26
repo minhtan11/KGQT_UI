@@ -17,10 +17,13 @@ import { ApiComponent } from '../api/api/api.component';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
     HomePageRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    IonicModule.forRoot({
+      scrollPadding: false,
+      scrollAssist: false
+    }),
   ],
   declarations: [HomePage,SignupPageComponent,NotificationServiceComponent,ApiComponent],
   providers : [NotificationServiceComponent,ApiComponent]

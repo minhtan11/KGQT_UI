@@ -67,10 +67,6 @@ export class SignupPageComponent  implements OnInit,AfterViewInit {
         headerText:'Email'
       },
       {
-        field:'address',
-        headerText:'Địa chỉ'
-      },
-      {
         field:'userName',
         headerText:'Tài khoản'
       },
@@ -87,10 +83,9 @@ export class SignupPageComponent  implements OnInit,AfterViewInit {
     this.formGroup = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      gender: ['', Validators.required],
+      gender: [0, Validators.required],
       phone: ['', Validators.required],
-      email: ['', Validators.email],
-      address: ['', Validators.required],
+      email: ['', Validators.required],
       userName: ['', Validators.required],
       passWord: ['', Validators.required],
       birthDay: [new Date().toISOString().substring(0, 10),[]],
@@ -135,7 +130,7 @@ export class SignupPageComponent  implements OnInit,AfterViewInit {
     this.router.navigate(['home']);
   }
 
-  async onSignUp(){
+  onSignUp(){
     let validate = this.appService.validation(this.formGroup,this.formSetup);
     if(validate) return;
     let fileName = Date.now() + this.formGroup.value.userName+'.'+this.image?.format;
@@ -145,7 +140,7 @@ export class SignupPageComponent  implements OnInit,AfterViewInit {
       if (res && !res?.isError) {
         
       }else{
-        this.notification.showNotiError('Lỗi!',res?.message);
+        this.notification.showNotiError('',res?.message,true);
       }
     })
   }

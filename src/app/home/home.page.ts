@@ -69,7 +69,7 @@ export class HomePage implements OnInit,AfterViewInit,OnDestroy {
 
   onSignIn(){
     if (this.formGroup.invalid) {
-      this.notification.showNotiError('Lỗi!','Tài khoản và mật khẩu không được phép để trống! Vui lòng nhập lại');
+      this.notification.showNotiError('','Tài khoản và mật khẩu không được phép để trống!',true);
       return;
     }
     let queryParams = new HttpParams();
@@ -79,12 +79,9 @@ export class HomePage implements OnInit,AfterViewInit,OnDestroy {
       if (res && !res?.isError) {
         
       }else{
-        this.notification.showNotiError('Lỗi!',res?.message);
+        this.notification.showNotiError('',res?.message,true);
       }
     })
-    // this.http.get(environment.apiUrl+'Authencation/login',{params:queryParams}).subscribe((res)=>{
-    //   this.notification.showNotiError('Lỗi!','Tài khoản và mật khẩu không được phép để trống! Vui lòng nhập lại');
-    // })
   }
   /**
    * *Function go to SignUp Page

@@ -1,12 +1,157 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button icon="chevron-back-outline" style="color:var(--ion-color-warning-tint)" text=""></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
-<ion-content>
-  <div style="margin-top: 1rem;" class="container w-100 h-100 d-flex align-items-center text-center">
+</ion-header> -->
+<ion-content [fullscreen]="true">
+  <div class="container w-100 h-100 text-center">
+    <div class="w-100" style="height: auto;padding: 10px;">
+      <div class="d-flex justify-content-center mb-10">
+        <div style="width: 100px;height: 100px;border-radius: 50%;box-shadow: 1px 1px 15px -5px black;">
+          <img (click)="uploadImage()" style="border-radius: 50%;" class="w-100 h-100" [src]="image ? 'data:image/jpeg;base64,'+image?.base64String : '../../../../assets/image/logo-user.png'"/>
+          <button style="background-color: #b0b0b0;
+          border-radius: 50%;
+          border: 1px solid;
+          margin-top: -4rem;
+          margin-left: 4rem;
+          color: white;" class="btn btn-sm">
+            <i class="bi bi-camera"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- <ion-grid [formGroup]="formGroup">
+      <ion-col size="12">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 20px;" lines="none">
+          <input name="firstName" formControlName="firstName" style="border: none;" type="text" class="form-control input-group-bg" placeholder="Họ">
+        </ion-item>     
+      </ion-col>
+      <ion-col size="12">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 20px;" lines="none">
+          <input name="lastName" formControlName="lastName" style="border: none;" type="text" class="form-control input-group-bg" placeholder="Tên">
+        </ion-item>    
+      </ion-col>
+      <ion-col size="12">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 20px;" lines="none">
+          <select style="border: none;" name="gender" formControlName="gender" class="form-select w-100" id="inputGroupSelect02">
+            <option [value]="0">Nam</option>
+            <option [value]="1">Nữ</option>
+          </select>
+        </ion-item>  
+      </ion-col>
+      <ion-col size="12">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 20px;" lines="none">
+          <input id="inputGroupSelect02" name="birthDay" formControlName="birthDay" style="border: none;" type="date" class="form-control input-group-bg" [value]="formGroup.value.birthDay" placeholder="Ngày sinh">
+        </ion-item>  
+      </ion-col>
+      <ion-col size="12">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 20px;" lines="none">
+          <input name="phone" formControlName="phone" style="border: none;" type="text" class="form-control input-group-bg" placeholder="Số điện thoại">
+        </ion-item>  
+      </ion-col>
+      <ion-col size="12">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 20px;" lines="none">
+          <input name="email" formControlName="email" style="border: none;" type="email" class="form-control input-group-bg" placeholder="Email">
+        </ion-item>  
+      </ion-col>
+      <ion-col size="12">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 20px;" lines="none">
+          <input name="userName" formControlName="userName" style="border: none;" type="text" class="form-control input-group-bg" placeholder="Tên tài khoản">
+        </ion-item>  
+      </ion-col>
+      <ion-col size="12">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 20px;" lines="none">
+          <div class="input-group">
+            <input id="ipPassWord" style="border: none;" name="passWord" formControlName="passWord" [type]="showPass ? 'text' : 'password'" class="form-control input-group-bg" placeholder="Mật khẩu">
+          <div class="input-group-append">
+            <span style="border: none;" class="input-group-text input-group-hide-border" id="basic-addon1">
+              <i (click)="showPassword()" [class]="!showPass ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+            </span>
+          </div>
+          </div>
+        </ion-item>  
+      </ion-col>
+      <ion-col size="12">
+        <button (click)="onSignUp()" type="button" class="btn btn-primary btn-md btn-block mb-10" style="border-radius: 50px;background-color: #ffb400;border: none;">ĐĂNG KÝ</button>
+      </ion-col>
+      <ion-col size="12">
+        <span style="font-size: 13px;">
+          Bạn đã có tài khoản?
+        </span>
+        <span (click)="goSignInPage()" style="font-size: 13px;color:#ffb400" class="font-weight-bold">
+          <u>Đăng nhập</u>
+        </span>
+      </ion-col>
+      <ion-col size="12">
+        <img style="width: 150px;height: auto;object-fit: contain;" src="../../../../assets/image/login-bg.jpg" alt="">
+      </ion-col>
+    </ion-grid> -->
+    <div class="row" [formGroup]="formGroup">
+      <div class="col-12 mb-10">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 10px;" lines="none">
+          <input name="firstName" formControlName="firstName" style="border: none;" type="text" class="form-control py-0 px-0" placeholder="Họ">
+        </ion-item> 
+      </div>
+      <div class="col-12 mb-10">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 10px;" lines="none">
+          <input name="lastName" formControlName="lastName"  style="border: none;" type="text" class="form-control py-0 px-0" placeholder="Tên">
+        </ion-item> 
+      </div>
+      <div class="col-12 mb-10">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 10px;" lines="none">
+          <select style="border: none;font-size: 11px;background-color: white;" name="gender" formControlName="gender" class="form-select w-100" id="inputGroupSelect02">
+            <option [value]="0">Nam</option>
+            <option [value]="1">Nữ</option>
+          </select>
+        </ion-item> 
+      </div>
+      <div class="col-12 mb-10">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 10px;" lines="none">
+          <input name="birthDay" formControlName="birthDay" style="border: none;font-size: 11px;" type="date" class="form-control py-0 px-0" [value]="formGroup.value.birthDay" placeholder="Ngày sinh">
+        </ion-item>
+        
+      </div>
+      <div class="col-12 mb-10">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 10px;" lines="none">
+          <input name="phone" formControlName="phone" style="border: none;" type="text" class="form-control py-0 px-0" placeholder="Số điện thoại">
+        </ion-item> 
+      </div>
+      <div class="col-12 mb-10">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 10px;" lines="none">
+          <input name="email" formControlName="email" style="border: none;" type="text" class="form-control py-0 px-0" placeholder="Email">
+        </ion-item> 
+      </div>
+      <div class="col-12 mb-10">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 10px;" lines="none">
+          <input name="userName" formControlName="userName" style="border: none;" type="text" class="form-control py-0 px-0" placeholder="Tên tài khoản">
+        </ion-item> 
+      </div>
+      <div class="col-12 mb-10">
+        <ion-item style="border: 1px solid #ced4da;border-radius: 10px;" lines="none" class="">
+          <input name="passWord" formControlName="passWord" style="border: none;" [type]="showPass ? 'text' : 'password'" class="form-control py-0 px-0" placeholder="Mật khẩu">
+          <i style="font-size: 12px;" slot="end" (click)="showPassword()" [class]="!showPass ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+        </ion-item>
+      </div>
+      <div class="col-12 mb-10">
+        <button (click)="onSignUp()" type="button" class="btn btn-primary btn-sm btn-block" style="border-radius: 50px;background-color: #ffb400;border: none;font-size: 12px;">ĐĂNG KÝ</button>
+      </div>
+      <div class="col-12 mb-20">
+        <ion-text style="font-size: 11px;">
+          Bạn đã có tài khoản?
+        </ion-text>
+        <span (click)="goSignInPage()" style="font-size: 11px;color:#ffb400" class="font-weight-bold">
+          <u>Đăng nhập</u>
+        </span>
+      </div>
+      <div class="col-12">
+      <img style="width: 150px;height: auto;object-fit: contain;" src="../../../../assets/image/login-bg.jpg" alt="">
+      </div>
+    </div>
+  </div>
+ 
+  <!-- <div style="margin-top: 1rem;" class="container w-100 h-100 d-flex align-items-center text-center">
     <div class="w-100" style="height: 95%;">
       <div class="mb-10">
         <img class="img-home" src="../../assets/image/logo.png" alt="">
@@ -84,79 +229,5 @@
         </div>
       </div>
     </div>
-  </div>
-    <!-- <div style="max-width: 850px;" class="tranform-center">
-      <div class="mb-10" >
-        <span style="font-size: 25px;font-weight: bold;color: black;">ĐĂNG KÝ</span>
-      </div>
-      <div style="height: 70px;" class="mb-10">
-        <img style="width: 70px;height: 70px;border-radius: 50px;margin-right: auto;margin-left: auto;display: block;border: 1px solid" (click)="uploadImage()" alt="" [src]="image ? 'data:image/jpeg;base64,'+image?.base64String : '../../../../assets/image/user.png'"  />
-      </div>
-      <div class="row" [formGroup]="formGroup">
-        <div class="col-12 mb-10">
-          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-success)" lines="none">
-            <input name="firstName" formControlName="firstName" class="input-mb " type="text" placeholder="Nhập Họ">
-          </ion-item>
-        </div>
-        <div class="col-12 mb-10">
-          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-success)" lines="none">
-            <input name="lastName" formControlName="lastName" class="input-mb " type="text" placeholder="Nhập tên">
-          </ion-item>
-        </div>
-        <div class="col-12 mb-10">
-          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-success)" lines="none">
-            <ion-select name="gender" formControlName="gender">
-              <span style="color: rgb(117, 117, 117) !important;letter-spacing: 1px;" slot="label">Giới tính</span>
-              <ion-select-option [value]="0">Nam</ion-select-option>
-              <ion-select-option [value]="1">Nữ</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </div>
-        <div class="col-12 mb-10">
-          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-success)" lines="none">
-            <input name="phone" formControlName="phone" class="input-mb " type="text" placeholder="Nhập số điện thoại">
-          </ion-item>
-        </div>
-        <div class="col-12 mb-10">
-          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-success)" lines="none">
-            <input name="birthDay" formControlName="birthDay" class="input-mb " type="date" [value]="formGroup.value.birthDay" placeholder="Ngày sinh">
-          </ion-item>
-        </div>
-        <div class="col-12 mb-10">
-          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-success)" lines="none">
-            <input name="email" formControlName="email" class="input-mb " type="email" placeholder="Nhập Email">
-          </ion-item>
-        </div>
-        <div class="col-12 mb-10">
-          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-success)" lines="none">
-            <input name="address" formControlName="address" class="input-mb " type="text" placeholder="Nhập địa chỉ">
-          </ion-item>
-        </div>
-        <div class="col-12 mb-10">
-          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-success)" lines="none">
-            <input name="userName" formControlName="userName" class="input-mb " type="text" placeholder="Nhập tài khoản">
-          </ion-item>
-        </div>
-        <div class="col-12 mb-10">
-          <ion-item style="--border-width: 1px;--border-radius: 50px;--border-color:var(--ion-color-success)" lines="none">
-            <input name="passWord" formControlName="passWord" class="input-mb " [type]="showPass ? 'text' : 'password'" placeholder="Nhập mật khẩu">
-            <i (click)="showPassword()" slot="end" [class]="!showPass ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
-          </ion-item>
-        </div>
-        <div class="col-12 mb-10">
-          <ion-button (click)="onSignUp()" class="mb-10" color="success" expand="block" shape="round">Đăng ký</ion-button>
-        </div>
-        <div class="col-12 mb-10">
-          <hr class="mb-10" style="background-color: #eae8e8;width: 50%;">
-        </div>
-        <div class="col-12 mb-10">
-          <ion-text style="font-size: 13px;">
-            Bạn đã có tài khoản?
-          </ion-text>
-          <ion-text (click)="goSignInPage()" style="font-size: 13px;font-weight: bold" color="success">
-            Đăng nhập
-          </ion-text>
-        </div>
-      </div>
-    </div> -->
+  </div> -->
 </ion-content>
