@@ -9,9 +9,6 @@ import { SignupPageComponent } from './signup-page/signup-page/signup-page.compo
 import { HttpClientModule } from '@angular/common/http';
 import { NotificationServiceComponent } from '../notification-service/notification-service/notification-service.component';
 import { ApiComponent } from '../api/api/api.component';
-import { MainPageComponent } from './main-page/main-page/main-page.component';
-import { MainPageHomeComponent } from './main-page/main-page/main-page-home/main-page-home/main-page-home.component';
-
 
 
 @NgModule({
@@ -24,7 +21,7 @@ import { MainPageHomeComponent } from './main-page/main-page/main-page-home/main
     HttpClientModule,
     IonicModule
   ],
-  declarations: [HomePage,SignupPageComponent,NotificationServiceComponent,ApiComponent,MainPageComponent,MainPageHomeComponent],
+  declarations: [HomePage,SignupPageComponent,NotificationServiceComponent,ApiComponent],
   providers : [NotificationServiceComponent,ApiComponent]
 })
 export class HomePageModule {}

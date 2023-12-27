@@ -5,58 +5,6 @@
     <div class="mb-20">
       <img style="width: 20%;border-radius: 20px;" class="img-home" src="../../assets/image/logo2.webp" alt="">
     </div>
-    <!-- <ion-grid>
-      <ion-row [formGroup]="formGroup">
-        <ion-col size="12">
-          <ion-item style="border: 1px solid #ced4da;border-radius: 20px;" lines="none">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span style="border: none;" class="input-group-text input-group-hide-border" id="basic-addon1">
-                  <i class="bi bi-person"></i>
-                </span>
-              </div>
-              <input name="userName" formControlName="userName" style="border: none;" type="text" class="form-control input-group-bg" placeholder="Tên đăng nhập">
-            </div>
-          </ion-item>
-        </ion-col>
-        <ion-col size="12">
-          <ion-item style="border: 1px solid #ced4da;border-radius: 20px;" lines="none">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span style="border: none;" class="input-group-text input-group-hide-border" id="basic-addon1">
-                  <i class="bi bi-key"></i>
-                </span>
-              </div>
-              <input id="ipPassWord" style="border: none;" name="passWord" formControlName="passWord" [type]="showPass ? 'text' : 'password'" class="form-control input-group-bg" placeholder="Mật khẩu">
-              <div class="input-group-append">
-                <span style="border: none;" class="input-group-text input-group-hide-border" id="basic-addon1">
-                  <i (click)="showPassword()" [class]="!showPass ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
-                </span>
-              </div>
-            </div>
-          </ion-item>
-        </ion-col>
-        <ion-col size="12">
-          <button (click)="onSignIn()" type="button" class="btn btn-primary btn-md btn-block mb-10" style="border-radius: 50px;background-color: #ffb400;border: none;">ĐĂNG NHẬP</button>
-        </ion-col>
-        <ion-col size="12">
-          <span style="font-size: 13px;" class="font-weight-bold mb-10">
-            <u>Quên mật khẩu?</u>
-          </span>
-        </ion-col>
-        <ion-col size="12">
-          <span style="font-size: 13px;">
-            Bạn không có tài khoản?
-          </span>
-          <span (click)="goSignUpPage()" style="font-size: 13px;color:#ffb400" class="font-weight-bold">
-            <u>Đăng ký</u>
-          </span>
-        </ion-col>
-        <ion-col size="12">
-          <img style="width: 250px;height: auto;object-fit: contain;" src="../../assets/image/delivery-service.png" alt="">
-        </ion-col>
-      </ion-row>
-    </ion-grid> -->
     <div class="row" [formGroup]="formGroup">
       <div class="col-12 mb-10">
         <ion-item style="border: 1px solid #ced4da;border-radius: 10px;" lines="none" class="">
@@ -69,18 +17,6 @@
           <i style="font-size: 12px;" slot="end" (click)="showPassword()" [class]="!showPass ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
         </ion-item>
       </div>
-      <!-- <div class="col-12 mb-10">
-        <ion-item style="border: 1px solid #ced4da;border-radius: 10px;height: 42px;flex-direction: column;" lines="none" class="d-flex justify-content-center">
-          <div class="input-group">
-            <input id="ipPassWord" style="border: none;" name="passWord" formControlName="passWord" [type]="showPass ? 'text' : 'password'" class="form-control input-group-bg py-0 px-0" placeholder="Mật khẩu">
-            <div class="input-group-append">
-              <span style="border: none;" class="input-group-text input-group-hide-border" id="basic-addon1">
-                <i (click)="showPassword()" [class]="!showPass ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
-              </span>
-            </div>
-          </div>
-        </ion-item>
-      </div> -->
       <div class="col-12 mb-10">
         <button (click)="onSignIn()" type="button" class="btn btn-primary btn-sm btn-block" style="border-radius: 50px;background-color: #ffb400;border: none;font-size: 12px;">ĐĂNG NHẬP</button>
       </div>

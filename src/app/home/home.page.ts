@@ -68,7 +68,7 @@ export class HomePage implements OnInit,AfterViewInit,OnDestroy {
   }
 
   onSignIn(){
-    this.router.navigate(['home/main']);
+    this.router.navigate(['main-page']);
     // if (this.formGroup.invalid) {
     //   this.notification.showNotiError('','Tài khoản và mật khẩu không được phép để trống!',true);
     //   return;
