@@ -12,7 +12,10 @@ import { MainPagePage } from './main-page.page';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
+    IonicModule.forRoot({
+      mode: 'ios',
+      //animated:false
+    }),
     MainPagePageRoutingModule
   ],
   declarations: [MainPagePage],

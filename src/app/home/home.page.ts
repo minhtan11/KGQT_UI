@@ -7,6 +7,8 @@ import Swal from 'sweetalert2'
 import { NotificationServiceComponent } from '../notification-service/notification-service/notification-service.component';
 import { ApiComponent } from '../api/api/api.component';
 import { Subject } from 'rxjs';
+import { Keyboard } from '@capacitor/keyboard';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +23,7 @@ export class HomePage implements OnInit,AfterViewInit,OnDestroy {
   isError:any = false;
   messageError:any;
   formGroup!: FormGroup;
+  isHideFooter:any=false;
   private destroy$ = new Subject<void>();
   constructor(
     private router: Router,
@@ -29,6 +32,7 @@ export class HomePage implements OnInit,AfterViewInit,OnDestroy {
     private notification : NotificationServiceComponent,
     private api : ApiComponent,
     private http : HttpClient,
+    private navCtrl: NavController
   ) {}
   //#endregion Constructor
 
@@ -41,7 +45,17 @@ export class HomePage implements OnInit,AfterViewInit,OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    
+    Keyboard.addListener('keyboardWillShow', info => {
+      this.isHideFooter = true;
+      this.dt.detectChanges();
+    });
+
+    Keyboard.addListener('keyboardWillHide', () => {
+      this.isHideFooter = false;
+      this.dt.detectChanges();
+    });
+
+    this.dt.detectChanges();
   }
 
   ngOnDestroy(): void {
@@ -68,7 +82,9 @@ export class HomePage implements OnInit,AfterViewInit,OnDestroy {
   }
 
   onSignIn(){
-    this.router.navigate(['main-page']);
+    this.onDestroy();
+    //this.router.navigate(['main-page'],{});
+    this.navCtrl.navigateForward('main-page', { animated: false });
     // if (this.formGroup.invalid) {
     //   this.notification.showNotiError('','Tài khoản và mật khẩu không được phép để trống!',true);
     //   return;

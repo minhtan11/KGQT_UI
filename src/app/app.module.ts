@@ -11,7 +11,10 @@ import { NotificationServiceComponent } from './notification-service/notificatio
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,],
+  imports: [BrowserModule,IonicModule.forRoot({
+    mode: 'ios',
+    //animated:false
+  }), AppRoutingModule,HttpClientModule,],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy, },NotificationServiceComponent],
   bootstrap: [AppComponent],
 })

@@ -11,6 +11,8 @@ import { AppService } from 'src/app/service/appservice.service';
 import Swal from 'sweetalert2'
 import { NotificationServiceComponent } from 'src/app/notification-service/notification-service/notification-service.component';
 import { ApiComponent } from 'src/app/api/api/api.component';
+import { Keyboard } from '@capacitor/keyboard';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -31,6 +33,7 @@ export class SignupPageComponent  implements OnInit,AfterViewInit {
   messageError:any = '';
   image:any;
   formSetup:any = [];
+  isHideFooter:any=false;
   private destroy$ = new Subject<void>();
   constructor(
     private formBuilder: FormBuilder,
@@ -39,7 +42,8 @@ export class SignupPageComponent  implements OnInit,AfterViewInit {
     private appService:AppService,
     private notification : NotificationServiceComponent,
     private dt : ChangeDetectorRef,
-    private api : ApiComponent
+    private api : ApiComponent,
+    private navCtrl: NavController
   ) { 
     this.formSetup = [
       {
@@ -94,7 +98,16 @@ export class SignupPageComponent  implements OnInit,AfterViewInit {
     });
   }
 
-  async ngAfterViewInit() {
+  ngAfterViewInit() {
+    Keyboard.addListener('keyboardWillShow', info => {
+      this.isHideFooter = true;
+      this.dt.detectChanges();
+    });
+
+    Keyboard.addListener('keyboardWillHide', () => {
+      this.isHideFooter = false;
+      this.dt.detectChanges();
+    });
   }
 
   ngOnDestroy() {
@@ -127,7 +140,7 @@ export class SignupPageComponent  implements OnInit,AfterViewInit {
   }
 
   goSignInPage(){
-    this.router.navigate(['home']);
+    this.navCtrl.navigateForward('home');
   }
 
   onSignUp(){

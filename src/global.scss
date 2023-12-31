@@ -182,12 +182,41 @@ select:focus{
 //     margin-left: -2px !important;
 // }
 .form-control::-webkit-input-placeholder {
-    font-size: 11px;
+    font-size: 0.6rem;
+    vertical-align: middle;
+}
+
+.form-control{
+    font-size: 0.6rem;
 }
 
 .tab-selected{
     color: #ffb400 !important;
     border-top: 1px solid #ffb400 !important;
+}
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+}
+  
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+.mySlides {
+    display: none;
+}  
+
+.ion-content-hide-scroll{
+    --offset-bottom: auto!important;
+    --overflow: hidden;
+    background-color: white !important;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
 }
 
 // Bootstrap and its default variables

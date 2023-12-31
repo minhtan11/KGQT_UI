@@ -19,7 +19,10 @@ import { ApiComponent } from '../api/api/api.component';
     HomePageRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    IonicModule
+    IonicModule.forRoot({
+      mode: 'ios',
+      //animated:false
+    })
   ],
   declarations: [HomePage,SignupPageComponent,NotificationServiceComponent,ApiComponent],
   providers : [NotificationServiceComponent,ApiComponent]
